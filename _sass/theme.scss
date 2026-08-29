@@ -156,6 +156,24 @@ hr { border: 0; border-top: 1px solid var(--border); }
 }
 .footer-col-wrapper { color: var(--muted); }
 
+// --- post call to action --------------------------------------------------
+// Appended to every post by _layouts/post.html. Uses the same accent-soft fill
+// and accent rule as blockquote, so it reads as a set-aside note rather than
+// part of the article body.
+
+.post-cta {
+  margin: 2.5rem 0 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  background: var(--accent-soft);
+  color: var(--fg);
+  font-size: .95rem;
+
+  p { margin: 0; }
+  a { font-weight: 600; }
+}
+
 // --- theme toggle ---------------------------------------------------------
 
 .theme-toggle {
