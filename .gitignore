@@ -1,0 +1,17 @@
+# Jekyll build output and caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+.DS_Store
+
+# Local-preview symlinks into the image archive. They point outside this repo,
+# so committing them would push dangling links and break the CI build.
+assets/images
+assets/files
+
+# NOTE: Gemfile.lock IS committed on purpose. ruby/setup-ruby's
+# `bundler-cache: true` needs it to install the exact same gem versions CI
+# built with; without it the build resolves fresh versions on every run.

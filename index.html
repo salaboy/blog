@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if paginator.page == 1 -%}
+  <div class="site-cover">
+    <img src="{{ "/branding/cover.png" | relative_url }}" alt="">
+  </div>
+  <p class="site-tagline">{{ site.description | escape }}</p>
+  {%- endif -%}
+
+  <ul class="post-list">
+    {%- for post in paginator.posts -%}
+    <li>
+      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h3>
+      {%- if post.description -%}
+        <p>{{ post.description | strip_html | truncate: 200 }}</p>
+      {%- endif -%}
+    </li>
+    {%- endfor -%}
+  </ul>
+
+  {%- if paginator.total_pages > 1 -%}
+  <nav class="pagination" style="display:flex;gap:1rem;align-items:center;justify-content:space-between;margin:2rem 0;">
+    {%- if paginator.previous_page -%}
+      <a href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+    {%- else -%}<span></span>{%- endif -%}
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {%- if paginator.next_page -%}
+      <a href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+    {%- else -%}<span></span>{%- endif -%}
+  </nav>
+  {%- endif -%}
+</div>

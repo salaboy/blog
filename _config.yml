@@ -1,0 +1,89 @@
+title: Salaboy
+description: >-
+  Mauricio Salatino (Salaboy) on platform engineering, Kubernetes, cloud native
+  workflows, AI agents and frameworks, and developer experience (DevEx).
+author: Mauricio Salatino
+url: "https://www.salaboy.com"
+baseurl: ""
+lang: en_US
+locale: en_US
+
+# Consumed by jekyll-seo-tag for Person/Organization structured data.
+logo: /branding/avatar.png
+
+# Home-page keywords. Individual posts use their own tags instead.
+keywords:
+  - salaboy
+  - Mauricio Salatino
+  - platform engineering
+  - kubernetes
+  - cloud native
+  - workflows
+  - agents
+  - AI
+  - frameworks
+  - developer experience
+  - devex
+
+# Carried over from the Ghost settings so jekyll-seo-tag emits the same
+# social metadata the old site did.
+twitter:
+  username: salaboy
+  card: summary_large_image
+social:
+  name: Mauricio Salatino
+  links:
+    - https://twitter.com/salaboy
+    - https://github.com/salaboy
+    - https://www.linkedin.com/in/salaboy
+
+timezone: Europe/Dublin
+
+# Matches the Ghost permalink scheme exactly. Individual posts also carry an
+# explicit `permalink:` in front matter, so URLs survive regardless.
+permalink: /:year/:month/:day/:title/
+
+theme: minima
+minima:
+  date_format: "%b %-d, %Y"
+
+# Order of the links in the site header.
+header_pages:
+  - archive.html
+  - tags.html
+  - about.md
+  - books.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/page:num/"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  # Local-preview symlinks into the 1 GB assets-master archive. Jekyll follows
+  # symlinks when copying static files, which would drag the whole archive into
+  # _site and blow the 1 GB GitHub Pages limit. In production images come from
+  # the CDN, so these are never needed in a build.
+  - assets/images
+  - assets/files
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

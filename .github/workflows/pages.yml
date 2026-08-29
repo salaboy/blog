@@ -1,0 +1,65 @@
+name: Deploy Jekyll site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      # NOTE: deliberately no `--baseurl "${{ steps.pages.outputs.base_path }}"`.
+      # On a project site that resolves to "/blog", but 9,306 links inside the
+      # post bodies are root-relative ("/2011/01/19/...") to match the old Ghost
+      # URLs exactly, and Liquid's baseurl does not rewrite links inside post
+      # content. Injecting a baseurl would therefore break them. The site is
+      # built for a domain root, which is what the salaboy.com custom domain
+      # provides.
+      - run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      # GitHub Pages hard-rejects published sites over 1 GB. Fail here with a
+      # clear message rather than at the opaque deploy step.
+      - name: Check published size against the 1 GB Pages limit
+        run: |
+          bytes=$(du -sk _site | cut -f1)
+          mb=$((bytes / 1024))
+          echo "Built site: ${mb} MB"
+          if [ "$mb" -ge 1024 ]; then
+            echo "::error::Site is ${mb} MB, at or over the 1 GB GitHub Pages limit."
+            exit 1
+          elif [ "$mb" -ge 900 ]; then
+            echo "::warning::Site is ${mb} MB — close to the 1 GB Pages limit."
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

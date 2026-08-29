@@ -1,0 +1,236 @@
+// Dark/light theming + a modernisation pass over minima 2.5.2.
+//
+// Colours live in CSS custom properties rather than Sass variables so they can
+// be swapped at runtime. `_config.yml`-level Sass is compiled once; custom
+// properties cascade, so flipping `data-theme` on <html> restyles everything
+// with no page reload and no duplicate stylesheet.
+
+:root {
+  color-scheme: light;
+
+  --bg:          #ffffff;
+  --bg-subtle:   #f6f7f9;
+  --fg:          #1a1d21;
+  --fg-strong:   #000000;
+  --muted:       #5c6570;
+  --border:      #e3e6ea;
+  --accent:      #0b63d6;
+  --accent-soft: rgba(11, 99, 214, 0.09);
+  --code-bg:     #f6f8fa;
+  --shadow:      0 1px 2px rgba(0, 0, 0, .05), 0 8px 24px rgba(0, 0, 0, .05);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:          #14171a;
+  --bg-subtle:   #1c2024;
+  --fg:          #e6e9ec;
+  --fg-strong:   #ffffff;
+  --muted:       #9aa4af;
+  --border:      #2c3238;
+  --accent:      #6aa9ff;
+  --accent-soft: rgba(106, 169, 255, 0.14);
+  --code-bg:     #1b1f24;
+  --shadow:      0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+// Readers who never touch the toggle follow their OS setting.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg:          #14171a;
+    --bg-subtle:   #1c2024;
+    --fg:          #e6e9ec;
+    --fg-strong:   #ffffff;
+    --muted:       #9aa4af;
+    --border:      #2c3238;
+    --accent:      #6aa9ff;
+    --accent-soft: rgba(106, 169, 255, 0.14);
+    --code-bg:     #1b1f24;
+    --shadow:      0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  // Only colours transition -- animating layout would jank on long posts.
+  transition: background-color .18s ease, color .18s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// minima compiles its palette to literal hex values, so every rule that needs
+// to change with the theme is restated here against the custom properties.
+.page-content { background: var(--bg); }
+.post-content, .post-content p, .post-content li { color: var(--fg); }
+.wrapper { max-width: 46rem; }
+
+// --- header ---------------------------------------------------------------
+
+.site-header {
+  border-top: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: saturate(1.4) blur(8px);
+}
+
+.site-title,
+.site-title:visited { color: var(--fg-strong); font-weight: 700; }
+
+.site-nav {
+  background: transparent;
+  border: 0;
+  line-height: normal;
+
+  .page-link {
+    color: var(--muted);
+    font-weight: 500;
+    padding: .3rem .55rem;
+    border-radius: 6px;
+
+    &:hover { color: var(--fg-strong); background: var(--bg-subtle); text-decoration: none; }
+  }
+}
+
+// --- content --------------------------------------------------------------
+
+a { color: var(--accent); text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--fg-strong);
+  letter-spacing: -.015em;
+  line-height: 1.25;
+}
+
+.post-title { font-size: 2.1rem; letter-spacing: -.03em; }
+.post-content { h2 { margin-top: 2.2rem; } h3 { margin-top: 1.8rem; } }
+
+blockquote {
+  color: var(--muted);
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  padding: .6rem 1rem;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+pre, code { border-color: var(--border); background-color: var(--code-bg); }
+pre { padding: 1rem; border-radius: 8px; }
+code { border-radius: 4px; }
+
+table { border-color: var(--border); }
+th, td { border-color: var(--border); }
+th { background: var(--bg-subtle); }
+tr:nth-child(even) { background: var(--bg-subtle); }
+
+img { border-radius: 8px; }
+.site-avatar, .post-content img[alt=""] { border-radius: 8px; }
+
+hr { border: 0; border-top: 1px solid var(--border); }
+
+// --- post list ------------------------------------------------------------
+
+.post-list > li {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+.post-list > li:last-child { border-bottom: 0; }
+.post-meta { color: var(--muted); font-size: .85rem; }
+.post-link { color: var(--fg-strong); font-weight: 650; }
+.post-link:hover { color: var(--accent); text-decoration: none; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--muted);
+}
+.footer-col-wrapper { color: var(--muted); }
+
+// --- theme toggle ---------------------------------------------------------
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-left: .4rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  line-height: 0;
+
+  &:hover { background: var(--bg-subtle); border-color: var(--muted); }
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  svg { width: 17px; height: 17px; display: block; }
+  .icon-sun  { display: none; }
+  .icon-moon { display: block; }
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  .icon-sun  { display: block; }
+  .icon-moon { display: none; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle {
+    .icon-sun  { display: block; }
+    .icon-moon { display: none; }
+  }
+  :root[data-theme="light"] .theme-toggle {
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+  }
+}
+
+// Keep the toggle beside the title on mobile, where minima collapses the nav.
+.site-header .wrapper { display: flex; align-items: center; gap: .5rem; }
+.site-nav { margin-left: auto; }
+
+// --- syntax highlighting --------------------------------------------------
+// minima hardcodes light-only token colours; restate them per theme.
+
+.highlight, .highlighter-rouge .highlight { background: var(--code-bg); }
+
+:root[data-theme="dark"] .highlight {
+  .c, .c1, .cm, .cs { color: #7d8590; font-style: italic; }
+  .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; }
+  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr { color: #a5d6ff; }
+  .n, .na, .nb, .nc, .nd, .ne, .nf, .ni, .nl, .nn, .no, .nt, .nv { color: #d2a8ff; }
+  .m, .mf, .mh, .mi, .mo, .il { color: #79c0ff; }
+  .o, .ow, .p { color: #e6e9ec; }
+  .gd { color: #ffdcd7; background: #67060c; }
+  .gi { color: #aff5b4; background: #033a16; }
+  .err { color: #ffa198; background: transparent; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .highlight {
+    .c, .c1, .cm, .cs { color: #7d8590; font-style: italic; }
+    .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; }
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr { color: #a5d6ff; }
+    .n, .na, .nb, .nc, .nd, .ne, .nf, .ni, .nl, .nn, .no, .nt, .nv { color: #d2a8ff; }
+    .m, .mf, .mh, .mi, .mo, .il { color: #79c0ff; }
+    .o, .ow, .p { color: #e6e9ec; }
+    .gd { color: #ffdcd7; background: #67060c; }
+    .gi { color: #aff5b4; background: #033a16; }
+    .err { color: #ffa198; background: transparent; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .theme-toggle { transition: none; }
+}

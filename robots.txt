@@ -1,0 +1,12 @@
+---
+permalink: /robots.txt
+layout: null
+sitemap: false
+---
+User-agent: *
+Allow: /
+
+# Build artefacts and paginated duplicates carry no unique content.
+Disallow: /page*/
+
+Sitemap: {{ "/sitemap.xml" | absolute_url }}

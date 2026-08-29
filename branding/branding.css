@@ -1,0 +1,69 @@
+/* Branding layer on top of minima 2.5.2.
+   Kept in its own file so the base theme can be upgraded without merge pain. */
+
+:root {
+  --brand-blue: #0000c1;
+  --brand-teal: #2fe3ac;
+}
+
+/* --- header: avatar beside the site title ------------------------------- */
+
+.site-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.site-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  /* The avatar art is transparent behind the face; a tinted disc keeps it
+     legible against the white header. */
+  background: var(--brand-teal);
+  vertical-align: middle;
+}
+
+/* minima gives .site-title a fixed line-height tuned for text alone. */
+.site-header .site-title,
+.site-header .site-title:visited {
+  line-height: 1;
+  padding: 0.35rem 0;
+}
+
+/* --- home page: cover banner -------------------------------------------- */
+
+.site-cover {
+  margin: 0 0 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0;              /* kill the inline-image descender gap */
+}
+
+.site-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.site-tagline {
+  margin: -1rem 0 2rem;
+  color: #666;
+  font-size: 1.05rem;
+}
+
+/* --- post list ----------------------------------------------------------- */
+
+.post-list > li {
+  margin-bottom: 1.75rem;
+}
+
+.pagination a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-avatar { transition: transform 0.2s ease; }
+  .site-title:hover .site-avatar { transform: rotate(-6deg) scale(1.06); }
+}
