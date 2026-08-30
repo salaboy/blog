@@ -1,0 +1,33 @@
+{%- comment -%}
+  Overrides minima 2.5.2's _includes/google-analytics.html.
+
+  The gem's version loads analytics.js and calls ga('create', ...) — that is
+  Universal Analytics, which stopped processing data in July 2023. Left as-is it
+  would load a dead script and record nothing. This is the GA4 gtag.js tag.
+
+  Only rendered when BOTH conditions in _includes/head.html hold: the build is
+  production, and site.google_analytics is set. So local `jekyll serve` never
+  reports traffic, and removing the config key removes the tag entirely.
+
+  site.google_analytics must be a GA4 measurement ID — the `G-XXXXXXXXXX` form.
+  A legacy `UA-...` ID will not work with this tag.
+{%- endcomment -%}
+{%- if site.google_analytics contains 'G-' -%}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ site.google_analytics }}');
+</script>
+{%- else -%}
+{%- comment -%}
+  Fail loudly in the built HTML rather than silently shipping a tag that cannot
+  work. A UA- id here means the value in _config.yml needs replacing with the
+  GA4 measurement id from Admin > Data streams.
+{%- endcomment -%}
+<!-- Google Analytics NOT loaded: site.google_analytics is "{{ site.google_analytics }}",
+     which is not a GA4 measurement ID (expected the G-XXXXXXXXXX form). -->
+{%- endif -%}

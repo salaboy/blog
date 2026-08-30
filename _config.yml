@@ -36,7 +36,7 @@ social:
     - https://twitter.com/salaboy
     - https://github.com/salaboy
     - https://www.linkedin.com/in/salaboy
-
+google_analytics: G-R5T9JXQ6Q6
 timezone: Europe/Dublin
 
 # Matches the Ghost permalink scheme exactly. Individual posts also carry an
@@ -74,6 +74,10 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  # Repo documentation and tooling, not site content. Without these Jekyll
+  # copies them verbatim into _site and serves them at salaboy.com/docs/...
+  - docs
+  - scripts
   # Local-preview symlinks into the 1 GB assets-master archive. Jekyll follows
   # symlinks when copying static files, which would drag the whole archive into
   # _site and blow the 1 GB GitHub Pages limit. In production images come from
