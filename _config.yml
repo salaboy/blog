@@ -51,6 +51,7 @@ minima:
 header_pages:
   - archive.html
   - tags.html
+  - videos.html
   - about.md
   - books.md
 plugins:

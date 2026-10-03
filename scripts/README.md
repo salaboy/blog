@@ -1,5 +1,23 @@
 # scripts/
 
+## `serve.sh`
+
+Builds and serves the site locally, matching the Ruby 3.3 toolchain CI uses.
+
+```sh
+scripts/serve.sh              # http://localhost:4000, live reload
+scripts/serve.sh build        # one-off build into _site/
+PORT=4001 scripts/serve.sh    # if 4000 is taken
+```
+
+Runs inside the official `ruby:3.3-slim` image, so no system Ruby is needed —
+macOS ships Ruby 2.6, which is below the `jekyll ~> 4.3` floor. Gems are cached
+in the `blog-gems` Docker volume rather than the working tree, so the repo stays
+clean. The first run installs them (~1 min); later runs start immediately.
+
+`--force_polling` is on because file-change events do not cross the container
+mount, so without it edits on the host never trigger a rebuild.
+
 ## `new-post.sh`
 
 Publishes a draft into `_posts/`, and its images and files into the
@@ -102,7 +120,7 @@ defaults to `../blog-assets` next to this repo.
 ### Verifying before you push
 
 ```sh
-bundle exec jekyll build && bundle exec jekyll serve
+scripts/serve.sh
 ```
 
 Then open the permalink the script printed. If the page 404s, check that the

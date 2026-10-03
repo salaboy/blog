@@ -1,0 +1,271 @@
+---
+layout: page
+title: Videos
+permalink: /videos/
+description: "Recordings of my talks, keynotes and workshops from conferences and meetups around the world."
+---
+
+{%- assign events = site.data.videos -%}
+{%- assign total = 0 -%}
+{%- for event in events -%}
+  {%- assign total = total | plus: event.talks.size -%}
+{%- endfor -%}
+
+{%- assign appearances = 0 -%}
+{%- for show in site.data.podcasts -%}
+  {%- assign appearances = appearances | plus: show.episodes.size -%}
+{%- endfor -%}
+
+<p>{{ total }} talks from {{ events.size }} conferences, meetups and webinars, newest first
+&mdash; plus <a href="#appearances">{{ appearances }} podcasts and interviews</a>.</p>
+
+{%- comment -%}
+  A conference series earns a filter once it has more than two talks, so the bar
+  stays short. It is hidden until the script runs, because the buttons do
+  nothing without JS and an inert control is worse than none.
+{%- endcomment -%}
+{%- assign with_series = events | where_exp: "e", "e.series" -%}
+{%- assign groups = with_series | group_by: "series" | sort: "name" -%}
+<div class="video-filters" id="video-filters" role="group" aria-label="Filter by conference" hidden>
+  <button class="video-filter is-active" type="button" data-filter="all" aria-pressed="true">
+    All <sup>{{ total }}</sup>
+  </button>
+  {%- for group in groups -%}
+    {%- assign count = 0 -%}
+    {%- for e in group.items -%}{%- assign count = count | plus: e.talks.size -%}{%- endfor -%}
+    {%- if count > 2 -%}
+      <button class="video-filter" type="button" data-filter="{{ group.name | escape }}" aria-pressed="false">
+        {{ group.name | escape }} <sup>{{ count }}</sup>
+      </button>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+<p class="video-empty" id="video-empty" hidden>No talks match that filter.</p>
+
+{%- comment -%}
+  Every `date` ends in a 4-digit year, so the last space-separated token groups
+  the events. `group_by_exp` keeps first-seen order, and the data is already
+  newest-first, so the years come out descending without a sort.
+{%- endcomment -%}
+{%- assign year_groups = events | group_by_exp: "e", "e.date | split: ' ' | last" -%}
+{%- for year_group in year_groups -%}
+<section class="video-year" data-year="{{ year_group.name }}">
+  <h2 class="video-year-label" id="y{{ year_group.name }}">{{ year_group.name }}</h2>
+
+  {%- for event in year_group.items -%}
+  {%- assign anchor = event.conference | append: " " | append: event.date | slugify -%}
+  <section class="video-event"{% if event.series %} data-series="{{ event.series | escape }}"{% endif %}>
+    <h3 class="video-sep" id="{{ anchor }}">
+      <span class="video-sep-name">{{ event.conference | escape }}</span>
+      <span class="video-sep-meta">{{ event.location | escape }} &middot; {{ event.date | escape }}</span>
+    </h3>
+
+    {%- for talk in event.talks -%}
+      {%- comment -%}
+        `slides` is either a slug string or a list of {slug, label} maps. A
+        String has no `first` in Liquid, which tells the two apart without a
+        type filter.
+      {%- endcomment -%}
+      {%- if talk.slides.first -%}
+        {%- assign decks = talk.slides -%}
+        {%- assign first_slug = talk.slides.first.slug -%}
+      {%- elsif talk.slides -%}
+        {%- assign decks = talk.slides | split: "|" -%}
+        {%- assign first_slug = talk.slides -%}
+      {%- else -%}
+        {%- assign decks = "" | split: "|" -%}
+        {%- assign first_slug = "" -%}
+      {%- endif -%}
+
+      {%- if talk.id -%}
+        {%- assign watch = "https://www.youtube.com/watch?v=" | append: talk.id -%}
+        {%- if talk.start -%}{%- assign watch = watch | append: "&t=" | append: talk.start -%}{%- endif -%}
+      {%- else -%}
+        {%- assign watch = "https://speakerdeck.com/salaboy/" | append: first_slug -%}
+      {%- endif -%}
+
+      <div class="video-item">
+        {%- if talk.id -%}
+        <a class="video-embed" href="{{ watch }}" data-video="{{ talk.id }}"
+           {% if talk.start %}data-start="{{ talk.start }}"{% endif %}
+           aria-label="Play: {{ talk.title | escape }}">
+          <img src="https://i.ytimg.com/vi/{{ talk.id }}/hqdefault.jpg" alt=""
+               width="480" height="270" loading="lazy" decoding="async">
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 68 48" width="68" height="48">
+              <path class="video-play-bg" d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5C4 2.3 2.3 4.8 1.5 7.7 .1 13 0 24 0 24s.1 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C67.9 35 68 24 68 24s-.1-11-1.5-16.3z"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </span>
+        </a>
+        {%- elsif talk.deck -%}
+        <div class="video-deck">
+          <iframe src="https://speakerdeck.com/player/{{ talk.deck }}" loading="lazy"
+                  title="Slides: {{ talk.title | escape }}" allowfullscreen></iframe>
+        </div>
+        {%- endif -%}
+        <h4 class="video-title">
+          <a href="{{ watch }}">{{ talk.title | escape }}</a>
+          {%- if talk.keynote %} <span class="video-badge">Keynote</span>{%- endif -%}
+        </h4>
+        <p class="video-links">
+          {%- if talk.with %}<span class="video-with">with {{ talk.with | escape }}</span>{%- endif -%}
+          {%- for deck in decks -%}
+            {%- if deck.slug -%}
+              {%- assign deck_slug = deck.slug -%}
+              {%- assign deck_label = deck.label | default: "Slides" -%}
+            {%- else -%}
+              {%- assign deck_slug = deck -%}
+              {%- assign deck_label = "Slides" -%}
+            {%- endif -%}
+            <a class="video-slides" href="https://speakerdeck.com/salaboy/{{ deck_slug }}">
+              <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true">
+                <path d="M1.5 1h13a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5H8.9l2.3 2.6a.6.6 0 0 1-.9.8L8 11.6l-2.3 2.8a.6.6 0 0 1-.9-.8L7.1 11H1.5a.5.5 0 0 1-.5-.5v-9A.5.5 0 0 1 1.5 1zm.7 1.7v7.1h11.6V2.7H2.2z"/>
+              </svg>
+              {{ deck_label | escape }}
+            </a>
+          {%- endfor -%}
+        </p>
+      </div>
+    {%- endfor -%}
+  </section>
+  {%- endfor -%}
+</section>
+{%- endfor -%}
+
+{%- assign shows = site.data.podcasts -%}
+{%- assign pod_total = 0 -%}
+{%- for show in shows -%}
+  {%- assign pod_total = pod_total | plus: show.episodes.size -%}
+{%- endfor -%}
+
+{%- comment -%}
+  Appearances rather than talks, so they sit below the conference list and out
+  of the filters — picking a conference hides this whole block.
+{%- endcomment -%}
+<section class="video-appearances" id="appearances">
+  <h2 class="video-section-label">Podcasts &amp; interviews</h2>
+  <p class="video-section-note">{{ pod_total }} appearances where I was the guest rather than the speaker.</p>
+
+  {%- assign show_years = shows | group_by_exp: "s", "s.date | split: ' ' | last" -%}
+  {%- for show_year in show_years -%}
+  <section class="video-year" data-year="{{ show_year.name }}">
+    <h3 class="video-year-label" id="p{{ show_year.name }}">{{ show_year.name }}</h3>
+
+    {%- for show in show_year.items -%}
+    <section class="video-event">
+      <h4 class="video-sep">
+        <span class="video-sep-name">{{ show.show | escape }}</span>
+        <span class="video-sep-meta">{{ show.date | escape }}</span>
+      </h4>
+
+      {%- for episode in show.episodes -%}
+      <div class="video-item">
+        <a class="video-embed" href="https://www.youtube.com/watch?v={{ episode.id }}"
+           data-video="{{ episode.id }}" aria-label="Play: {{ episode.title | escape }}">
+          <img src="https://i.ytimg.com/vi/{{ episode.id }}/hqdefault.jpg" alt=""
+               width="480" height="270" loading="lazy" decoding="async">
+          <span class="video-play" aria-hidden="true">
+            <svg viewBox="0 0 68 48" width="68" height="48">
+              <path class="video-play-bg" d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5C4 2.3 2.3 4.8 1.5 7.7 .1 13 0 24 0 24s.1 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C67.9 35 68 24 68 24s-.1-11-1.5-16.3z"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </span>
+        </a>
+        <h5 class="video-title">
+          <a href="https://www.youtube.com/watch?v={{ episode.id }}">{{ episode.title | escape }}</a>
+        </h5>
+        {%- if episode.with %}
+        <p class="video-links"><span class="video-with">with {{ episode.with | escape }}</span></p>
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+    </section>
+    {%- endfor -%}
+  </section>
+  {%- endfor -%}
+</section>
+
+<script>
+  // Thumbnail facades keep the page light: 80-odd live iframes would pull in the
+  // YouTube player for every talk on first paint. The anchor is a real link to
+  // the video, so this only upgrades the experience when JS is available.
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.video-embed');
+    if (!trigger || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+
+    var params = 'autoplay=1&rel=0';
+    var start = trigger.getAttribute('data-start');
+    if (start) params += '&start=' + start;
+
+    var frame = document.createElement('iframe');
+    frame.src = 'https://www.youtube-nocookie.com/embed/' +
+                trigger.getAttribute('data-video') + '?' + params;
+    frame.title = trigger.getAttribute('aria-label') || 'YouTube video player';
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
+                  'gyroscope; picture-in-picture; web-share';
+    frame.allowFullscreen = true;
+    frame.loading = 'lazy';
+
+    trigger.replaceWith(frame);
+    frame.focus();
+  });
+
+  (function () {
+    var bar = document.getElementById('video-filters');
+    if (!bar) return;
+    var buttons = Array.prototype.slice.call(bar.querySelectorAll('.video-filter'));
+    var appearances = document.getElementById('appearances');
+    var sections = Array.prototype.slice.call(
+      document.querySelectorAll('.video-event')).filter(function (s) {
+        return !appearances || !appearances.contains(s);
+      });
+    var years = Array.prototype.slice.call(
+      document.querySelectorAll('.video-year')).filter(function (y) {
+        return !appearances || !appearances.contains(y);
+      });
+    var empty = document.getElementById('video-empty');
+    bar.hidden = false;
+
+    function apply(name) {
+      var shown = 0;
+      sections.forEach(function (section) {
+        var match = name === 'all' || section.getAttribute('data-series') === name;
+        section.hidden = !match;
+        if (match) shown++;
+      });
+      // A year divider with nothing left under it would read as an empty year.
+      years.forEach(function (year) {
+        year.hidden = !Array.prototype.some.call(
+          year.querySelectorAll('.video-event'), function (s) { return !s.hidden; });
+      });
+      // The filters describe conferences, so the appearances block is only
+      // meaningful on the unfiltered view.
+      if (appearances) appearances.hidden = name !== 'all';
+      buttons.forEach(function (button) {
+        var on = button.getAttribute('data-filter') === name;
+        button.classList.toggle('is-active', on);
+        button.setAttribute('aria-pressed', String(on));
+      });
+      if (empty) empty.hidden = shown !== 0;
+
+      // Keep the filter in the URL so a filtered view can be linked and the
+      // back button steps through filters rather than leaving the page.
+      var url = name === 'all' ? location.pathname
+                               : location.pathname + '?c=' + encodeURIComponent(name);
+      history.replaceState(null, '', url);
+    }
+
+    bar.addEventListener('click', function (e) {
+      var button = e.target.closest('.video-filter');
+      if (button) apply(button.getAttribute('data-filter'));
+    });
+
+    var wanted = new URLSearchParams(location.search).get('c');
+    if (wanted && buttons.some(function (b) { return b.getAttribute('data-filter') === wanted; })) {
+      apply(wanted);
+    }
+  })();
+</script>

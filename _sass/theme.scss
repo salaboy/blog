@@ -174,6 +174,258 @@ hr { border: 0; border-top: 1px solid var(--border); }
   a { font-weight: 600; }
 }
 
+// --- videos ---------------------------------------------------------------
+// /videos/ renders one `.video-event` per conference. The separator carries the
+// conference, location and date; the players sit underneath it.
+
+.video-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0 0 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.video-filter {
+  padding: .3rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+
+  sup {
+    font-size: .7em;
+    font-weight: 600;
+    opacity: .7;
+  }
+
+  &:hover { color: var(--fg-strong); background: var(--bg-subtle); }
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  &.is-active {
+    border-color: transparent;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+
+    sup { opacity: .85; }
+  }
+}
+
+// The accent is a mid blue in light mode; white text on it is the readable
+// pairing, and stays so against the lighter accent used in dark mode.
+:root[data-theme="dark"] .video-filter.is-active { color: #0d1117; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .video-filter.is-active { color: #0d1117; }
+  :root[data-theme="light"] .video-filter.is-active { color: #fff; }
+}
+
+.video-empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+// Years group the events. The label is the loudest thing on the page after the
+// page title, so scanning for a year beats scrolling for one.
+.video-year { margin: 0 0 1rem; }
+
+.video-year-label {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin: 0 0 1.75rem;
+  font-size: 1.95rem;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  scroll-margin-top: 4.5rem;
+
+  // The rule runs from the year to the right edge, so the number reads as the
+  // start of a band rather than a floating heading.
+  &::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--border);
+  }
+}
+
+.video-year + .video-year .video-year-label { margin-top: 1.5rem; }
+
+.video-event {
+  margin: 0 0 3rem;
+
+  &:last-of-type { margin-bottom: 1rem; }
+}
+
+// Appearances sit below the talks behind a heavier break, so the two kinds of
+// video never read as one list.
+.video-appearances {
+  margin-top: 1.5rem;
+  padding-top: 2.5rem;
+  border-top: 3px solid var(--border);
+}
+
+.video-section-label {
+  margin: 0 0 .3rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  scroll-margin-top: 4.5rem;
+}
+
+.video-section-note {
+  margin: 0 0 2.25rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.video-sep { scroll-margin-top: 4.5rem; }
+
+.video-sep {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .75rem;
+  margin: 0 0 1.25rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.15rem;
+}
+
+.video-sep-name { font-weight: 700; }
+
+.video-sep-meta {
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.video-item + .video-item { margin-top: 2rem; }
+
+// The facade and the iframe that replaces it share these rules, so swapping one
+// for the other on click does not shift the layout. `.video-deck` holds the
+// Speaker Deck embed used for talks that were never recorded, and sits in the
+// same 16:9 box so a mixed list stays on one rhythm.
+.video-embed,
+.video-deck,
+.video-item iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  box-shadow: var(--shadow);
+}
+
+.video-deck {
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border-radius: inherit;
+  }
+}
+
+.video-embed {
+  position: relative;
+  overflow: hidden;
+
+  // hqdefault is 4:3 with letterbox bars; cropping to 16:9 removes them.
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+  }
+
+  &:hover .video-play-bg,
+  &:focus-visible .video-play-bg { fill: #f00; fill-opacity: 1; }
+
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+}
+
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 0;
+  pointer-events: none;
+
+  .video-play-bg {
+    fill: #212121;
+    fill-opacity: .8;
+    transition: fill .15s ease, fill-opacity .15s ease;
+  }
+}
+
+.video-title {
+  margin: .75rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.35;
+
+  a { color: var(--fg-strong); font-weight: 650; }
+  a:hover { color: var(--accent); text-decoration: none; }
+}
+
+.video-badge {
+  display: inline-block;
+  margin-left: .35rem;
+  padding: .1rem .4rem;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  vertical-align: .14em;
+}
+
+// Co-speakers and the Speaker Deck link share one row under the title; the row
+// wraps to a second line on narrow screens rather than squashing either half.
+.video-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .3rem .8rem;
+  margin: .3rem 0 0;
+  font-size: .85rem;
+  line-height: 1.4;
+
+  &:empty { display: none; }
+}
+
+.video-with { color: var(--muted); }
+
+.video-slides {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; }
+
+  svg { flex: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-play .video-play-bg { transition: none; }
+}
+
 // --- theme toggle ---------------------------------------------------------
 
 .theme-toggle {

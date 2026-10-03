@@ -1,0 +1,741 @@
+# Conference talks, keynotes, workshops and webinars, newest first.
+#
+# Each entry is one event; `talks` holds the sessions recorded at it. The page
+# at /videos/ renders `conference`, `location` and `date` as the separator above
+# each group, so an event with several sessions is listed once.
+#
+# `id` is the YouTube video id. `start` (optional, seconds) deep-links into a
+# full-day stream. `with` (optional) lists co-speakers. `slides` (optional) is
+# the speakerdeck.com/salaboy slug for that talk's deck.
+#
+# A talk with no `id` had no recording published: give it `deck` (the Speaker
+# Deck player id, the hex string in its embed URL) and the deck is shown in the
+# player's place.
+
+- conference: Vietnam Open Infrastructure Day
+  location: Vietnam
+  date: August 2026
+  talks:
+    - title: "Reacting to AI: The Cloud Native Way"
+      id: wT8hlKqgSjg
+
+- conference: Cloud Native Summit Munich
+  location: Munich, Germany
+  date: July 2026
+  talks:
+    - title: From Cloud Native to Agentic Applications
+      id: McPNBBBvwCA
+      # Two decks cover this talk: the one sharing its title, and the
+      # multi-agent cut. `slides` takes a list of {slug, label} when a talk has
+      # more than one.
+      slides:
+        - slug: from-cloud-native-to-agentic-applications
+        - slug: from-cloud-native-applications-to-multi-agent-distributed-systems
+          label: Multi-agent slides
+
+- conference: DevBCN 2026
+  location: Barcelona, Spain
+  date: June 2026
+  series: DevBCN
+  talks:
+    - title: Developer Experience in the Age of Coding Agents
+      id: _k-nk6mPDbg
+      slides: developer-experience-in-the-age-of-ai
+
+- conference: KCD New York 2026
+  location: New York, USA
+  date: June 2026
+  series: KCD
+  talks:
+    - title: "Reacting to AI: the Cloud Native Way"
+      id: 6NjF2wvgEFc
+
+- conference: Dash0 Webinar
+  location: Online
+  date: May 2026
+  series: Dash0
+  talks:
+    # Dash0 also re-uploaded this one as Qgs1tRAVpcQ; this is the original
+    # livestream.
+    - title: Testing and Observing Agentic Applications with OTel, Microcks & Reshapr
+      id: pV_3Vq49wy4
+      slides: observing-testing-and-connecting-spring-ai-applications-microks-reshapr-and-opentelemetry
+      with: Laurent Broudoux
+
+- conference: Dash0 Webinar
+  location: Online
+  date: May 2026
+  series: Dash0
+  talks:
+    - title: "Beyond the Stage: Taming Agentic Workflows with Dapr and OpenTelemetry"
+      id: 0hbgOftU_Mg
+      with: Kasper Borg Nissen
+
+- conference: Dapr Workflows and Java Webinar
+  location: Online
+  date: April 2026
+  talks:
+    - title: Dapr Workflows for Spring Boot 4 Developers
+      id: e-f_ttFeF8o
+
+- conference: KubeCon + CloudNativeCon Europe 2026
+  location: Amsterdam, Netherlands
+  date: March 2026
+  series: KubeCon
+  talks:
+    - title: "Taming Complexity: Building Observable Workflows with Dapr and OpenTelemetry"
+      id: XVEPKb0aCx8
+      with: Kasper Borg Nissen
+    - title: Fantastic Vibes and Where To Find Them
+      id: bL1fGn96-vI
+      with: Erica Hughberg
+
+- conference: Dapr 1.17 Release Celebration Event
+  location: Online
+  date: March 2026
+  talks:
+    # A multi-speaker community event; `start` jumps to his segment.
+    - title: Workflow Tracing
+      id: z6E4WLV3u3k
+      start: 1196
+
+- conference: KubeCon + CloudNativeCon North America 2025
+  location: Atlanta, USA
+  date: November 2025
+  series: KubeCon
+  talks:
+    - title: The Evolution of Platform APIs in the Age of LLMs
+      id: aOMcUwR4PN4
+      with: Viktor Farcic
+    - title: "Capabilities, APIs, and Experiences: Blueprints To Build Interoperable Platforms"
+      id: tvgMu1yTo20
+      with: Kyle Penfound
+
+- conference: Dapr Day 2025
+  location: Online
+  date: November 2025
+  talks:
+    # Also uploaded to the Dapr channel as A1Fsuou3-Gk.
+    - title: Dapr for Spring Boot & Quarkus
+      id: lSmxptjIs-E
+
+- conference: DevBCN 2025
+  location: Barcelona, Spain
+  date: July 2025
+  series: DevBCN
+  talks:
+    - title: Cloud Native Developer Experience in 2025
+      id: u49C5lx56fE
+      slides: cloud-native-developer-experiences-in-2025
+
+- conference: KubeCon + CloudNativeCon Japan 2025
+  location: Tokyo, Japan
+  date: June 2025
+  series: KubeCon
+  talks:
+    - title: "Keynote: Platform Alchemy: Transforming Kubernetes Into Developer Gold"
+      id: TSub3PFwXPk
+      with: Alexa Griffith
+      keynote: true
+
+- conference: KubeCon + CloudNativeCon China 2025
+  location: Hong Kong, China
+  date: June 2025
+  series: KubeCon
+  talks:
+    - title: The Past, the Present, and the Future of Platform Engineering
+      id: lkbn9pgAtaw
+
+- conference: JNation 2025
+  location: Coimbra, Portugal
+  date: May 2025
+  series: JNation
+  talks:
+    - title: "Durable Execution in Serverless Architectures: Cloudflare, Spring Boot & Dapr"
+      id: W5rMOVbIPL4
+      with: Nele Uhlemann
+
+- conference: KCD Rio 2025
+  location: Rio de Janeiro, Brazil
+  date: May 2025
+  series: KCD
+  talks:
+    - title: "Keynote: The Past, the Present, and the Future of Platform Engineering"
+      id: BsaEo5ZJJpM
+      slides: keynote-kcd-brazil-platform-engineering-on-k8s-portuguese
+      keynote: true
+
+- conference: Spring I/O 2025
+  location: Barcelona, Spain
+  date: May 2025
+  series: Spring I/O
+  talks:
+    - title: Simplifying Cloud-Native App Testing Across Environments
+      id: Pdeqic_pXGE
+      slides: simplifying-cloud-native-app-testing-across-environments-with-dapr-and-microcks
+
+- conference: KubeCon + CloudNativeCon Europe 2025
+  location: London, UK
+  date: April 2025
+  series: KubeCon
+  talks:
+    - title: "Breaking Barriers: Bringing Application Developers Closer To the CNCF"
+      id: nvKpg3JgSjs
+      with: Thomas Vitale
+    - title: Streamline Your App Development With the Power of Cloud Native
+      id: wGapUnTw-_Y
+      slides: kubecon-25-london-cncf-learning-lounge
+      with: Julia Furst Morgado
+
+- conference: KubeCon + CloudNativeCon North America 2024
+  location: Salt Lake City, USA
+  date: November 2024
+  series: KubeCon
+  talks:
+    - title: Taming Your Application's Environments
+      id: PSenmCMU5mQ
+      slides: taming-you-applications-environments
+      with: Marcos Lilljedahl
+    - title: Why Does Continuous Profiling Matter to Developers?
+      id: ri4K4_2pJKg
+      slides: why-does-continuous-profiling-matter-to-developers-number-appdevelopercon
+      with: Jonas Kunz
+    - title: "Lightning Talk: Intro to the CNCF App Development WG"
+      id: yCJmdqDoghw
+      slides: application-development-wg-intro-at-appdevelopercon
+      with: Daniel Oh
+
+- conference: KCD UK 2024
+  location: London, UK
+  date: October 2024
+  series: KCD
+  talks:
+    - title: When Platforms Meet Application Developers
+      id: -uWcMxSEfrw
+      slides: when-platforms-meet-application-developers-kcd-uk
+      with: Abby Bangser
+
+- conference: Women In Cloud Native
+  location: Online
+  date: August 2024
+  talks:
+    - title: Platform Engineering on Kubernetes
+      id: HrGnfyzoNlI
+
+- conference: DevBCN / KCD Barcelona 2024
+  location: Barcelona, Spain
+  date: June 2024
+  series: DevBCN
+  talks:
+    - title: Unleashing the Power of Serverless on Kubernetes with Knative, Crossplane, Dapr and KEDA
+      id: hbV-C2YzaIc
+      slides: devbcn-2024-serverless-platforms-on-kubernetes
+    # His own run-through of the demo, recorded ahead of the session above.
+    - title: Serverless Platforms on Kubernetes — Demo Dry Run
+      id: OHIkBvVUkKE
+
+- conference: Spring I/O 2024
+  location: Barcelona, Spain
+  date: May 2024
+  series: Spring I/O
+  talks:
+    - title: "Dapr and Spring Boot: Solving the Challenges of Distributed Systems"
+      id: pMGz54Gstas
+      slides: o-2024-dapr-for-spring-boot-developers
+      with: Thomas Vitale
+
+- conference: KubeCon + CloudNativeCon Europe 2024
+  location: Paris, France
+  date: March 2024
+  series: KubeCon
+  talks:
+    - title: Unlocking New Platform Experiences with Open Interfaces
+      id: DladPy_4aFE
+      slides: kubecon-eu-unlocking-new-platform-experiences-with-open-interfaces
+      with: Thomas Vitale
+    - title: Building Polyglot Developer Experiences in 2024
+      id: XY-5DxQOhqA
+      slides: appdevelopercon-2024-eu-building-polyglot-developer-experiences-in-2024
+      with: Marcos Lilljedahl
+    - title: "Knative Functions Deep-Dive: Why You Should Use Knative Functions For Your Next Microservices Application"
+      id: l0EooTOGW84
+      slides: kubecon-eu-2024-knative-maintainers-session
+      with: Luke Kingland, Dave Protasowski
+
+- conference: Voxxed Days Zurich 2024
+  location: Zurich, Switzerland
+  date: March 2024
+  talks:
+    - title: Avoid Mastering Kubernetes for Local Development with Dapr and Testcontainers
+      id: VYCelta9WdQ
+      slides: voxxed-days-zurich-24-wiring-cloud-native-applications-for-local-development
+      with: Oleg Šelajev
+
+- conference: KCD Brazil 2024
+  location: São Paulo, Brazil
+  date: March 2024
+  series: KCD
+  talks:
+    - title: "Platform Engineering on Kubernetes: Lessons Learned in the Open"
+      id: ZDt7q0k77XM
+      slides: kcd-sao-paulo-brazil-feb-2024
+
+- conference: Rawkode Academy
+  location: Online
+  date: December 2023
+  talks:
+    - title: Hands-on Introduction to Dapr
+      id: 9RH5KH24Vmo
+
+- conference: DevOps Toolkit
+  location: Online
+  date: November 2023
+  series: DevOps Toolkit
+  talks:
+    - title: Building FaaS Platforms — Ask Me Anything
+      id: F7qf2jp_Mu8
+
+- conference: KubeCon + CloudNativeCon China 2023
+  location: Shanghai, China
+  date: September 2023
+  series: KubeCon
+  talks:
+    - title: "Kubernetes Wonderland: Adventures in Platform Building"
+      id: Yg58lp_R0R4
+      slides: kubecon-china-2023-adventures-in-platform-building
+      with: Alexa Griffith
+
+- conference: "Dapr Community Call #88"
+  location: Online
+  date: August 2023
+  talks:
+    - title: OpenAPI Spec for Dapr Components
+      id: rTovKpG0rhY
+      start: 956
+
+- conference: DevBCN 2023
+  location: Barcelona, Spain
+  date: July 2023
+  series: DevBCN
+  talks:
+    # No recording was published for this one, so the slot carries the deck
+    # itself. `deck` is the Speaker Deck player id behind `slides`.
+    - title: Reducing the K8s Pain for Developers in a Multi-Cloud World
+      slides: devbcn-2023-barcelona
+      deck: 1b2832a76d6844bbb4415ebcb66401d2
+
+- conference: Diagrid Webinar
+  location: Online
+  date: June 2023
+  talks:
+    - title: Local Development of Cloud-Native Apps Using Dapr and Testcontainers
+      id: 7-VbganahZQ
+      with: Oleg Šelajev
+
+- conference: "Dapr Community Call #85"
+  location: Online
+  date: June 2023
+  talks:
+    - title: Dapr and Testcontainers
+      id: ZrYd56PSkwc
+      start: 73
+
+- conference: GOTO Aarhus 2023
+  location: Aarhus, Denmark
+  date: May 2023
+  talks:
+    - title: Enabling Developers in a Multi-Cloud World
+      id: NjvZxGG_8W0
+      slides: enabling-developers-in-a-multi-cloud-world-goto-aarhus-2023
+
+- conference: Spring I/O 2023
+  location: Barcelona, Spain
+  date: May 2023
+  series: Spring I/O
+  talks:
+    - title: Spring Boot in a Polyglot Cloud-Native World with Dapr
+      id: FFyoS_NuEgM
+      slides: o-2023-spring-boot-in-a-cloud-native-polyglot-world
+
+- conference: Devoxx UK 2023
+  location: London, UK
+  date: May 2023
+  series: Devoxx UK
+  talks:
+    - title: Enabling Your Developer's Path to Production
+      id: gcBuSSm2r-Q
+
+- conference: WTF is SRE? 2023
+  location: London, UK
+  date: May 2023
+  talks:
+    - title: Developer Focused Platforms on Top of Kubernetes
+      id: WADtP52kT2k
+
+- conference: KubeCon + CloudNativeCon Europe 2023
+  location: Amsterdam, Netherlands
+  date: April 2023
+  series: KubeCon
+  talks:
+    - title: Safe, Dynamic Middleware with Dapr and WebAssembly
+      id: DXW9kB0NsUY
+      with: Adrian Cole
+
+- conference: Cloud Native Rejekts EU 2023
+  location: Amsterdam, Netherlands
+  date: April 2023
+  talks:
+    - title: Platform Engineering on Kubernetes
+      id: lTwCQMzDD3E
+      start: 3939
+
+- conference: "Dapr Community Call #79"
+  location: Online
+  date: March 2023
+  talks:
+    # A community call with several segments; `start` jumps to his.
+    - title: Dapr + Knative
+      id: bxpknTbH800
+      start: 2456
+
+- conference: State of Open Con 2023
+  location: London, UK
+  date: February 2023
+  talks:
+    - title: Building OSS Developer Experiences for the Cloud
+      id: M3gyd4CEs5I
+
+- conference: KubeDay Japan 2022
+  location: Tokyo, Japan
+  date: December 2022
+  series: KubeDay
+  talks:
+    - title: Building a FaaS Platform Using CNCF OSS Projects (Knative, Crossplane, Tekton, Argo CD)
+      id: xobwuY_rZKs
+    - title: Building FaaS Platforms on Top of Kubernetes — Demo
+      id: ObNe9VirzA0
+
+- conference: KubeCon + CloudNativeCon North America 2022
+  location: Detroit, USA
+  date: October 2022
+  series: KubeCon
+  talks:
+    - title: "Keynote: What a RUSH! Let's Deploy Straight to Production!"
+      id: eJG7uIU9NpM
+      with: Whitney Lee
+      keynote: true
+    - title: "Knative: More Than Just Serverless Containers"
+      id: 6rm_-9-30KA
+      with: Lance Ball, Naina Singh, Evan Anderson
+    # Not to be confused with the solo KubeDay Japan talk of almost the same
+    # name a month later — different session, different co-speaker.
+    - title: Building a FaaS Platform Using CNCF OSS Projects
+      id: VARnyva3VbE
+      with: Viktor Farcic
+
+- conference: ϟ Enlightning — VMware Tanzu
+  location: Online
+  date: April 2022
+  talks:
+    - title: What Is Knative Eventing?
+      id: eRKR53nOKyA
+      with: Whitney Lee
+
+- conference: DevOps Toolkit
+  location: Online
+  date: July 2022
+  series: DevOps Toolkit
+  talks:
+    - title: Serverless On Kubernetes — Ask Me Anything
+      id: Nv1qWibfsSw
+
+- conference: cdCon 2022
+  location: Austin, USA
+  date: June 2022
+  talks:
+    - title: Expanding Interoperability in the CD Ecosystem
+      id: FaJw-YchWcQ
+      with: Ishan Khare
+
+- conference: KubeCon + CloudNativeCon Europe 2022
+  location: Valencia, Spain
+  date: May 2022
+  series: KubeCon
+  talks:
+    - title: No Docker, No YAML and a Polyglot Developer Experience on Top of Kubernetes
+      id: OJwQkFl7gRY
+      with: Thomas Vitale
+    - title: Overview and State of Knative
+      id: e5CbFDq-Jos
+      with: Carlos Santana
+    - title: "KnativeCon: Knative Functions — An Introduction, Demonstration and Roadmap"
+      id: 5NQAAnZZors
+      with: Lance Ball
+
+- conference: Devoxx UK 2022
+  location: London, UK
+  date: May 2022
+  series: Devoxx UK
+  talks:
+    - title: Knative and Spring — Bringing Back the Func
+      id: EKDYE_dStTI
+      with: Thomas Vitale
+    - title: "Reduce Cognitive Load: Pave the Golden Path On Your Internal Platform"
+      id: lWsiw_H5FpQ
+
+- conference: Spring I/O 2022
+  location: Barcelona, Spain
+  date: May 2022
+  series: Spring I/O
+  talks:
+    - title: Knative and Spring Native — Bringing Back the Func
+      id: byNh7sWJnRE
+      with: Thomas Vitale
+
+- conference: KCD Guatemala 2021
+  location: Online
+  date: December 2021
+  series: KCD
+  talks:
+    - title: Abstracciones sobre Abstracciones, ¿estás construyendo para Kubernetes?
+      id: ELdSZNDORyc
+
+- conference: DevOps Toolkit
+  location: Online
+  date: December 2021
+  series: DevOps Toolkit
+  talks:
+    - title: Kubernetes For Developers — Ask Me Anything
+      id: sUnSSIM-rxw
+
+- conference: KubeCon + CloudNativeCon North America 2021
+  location: Los Angeles, USA
+  date: October 2021
+  series: KubeCon
+  talks:
+    - title: Tools That I Wish Existed 3 Years Ago To Build a SaaS Offering
+      id: IVKs2rUDloU
+
+- conference: Cloud Native Islamabad
+  location: Online
+  date: September 2021
+  talks:
+    - title: Closer to Continuous Delivery with Knative
+      id: z5UWX3YlreM
+
+- conference: MediaChicas / Google Open Source
+  location: Online
+  date: September 2021
+  talks:
+    - title: Cloud con Knative
+      id: GcDOmmR1Db8
+      with: María Cruz
+
+- conference: JBCNConf 2021
+  location: Barcelona, Spain
+  date: August 2021
+  series: JBCNConf
+  talks:
+    - title: Preparándonos para un mundo multi-cloud
+      id: _tZM6510sAU
+
+- conference: Keptn User Group Meetup
+  location: Online
+  date: August 2021
+  talks:
+    - title: Building an Interoperable CI/CD Ecosystem
+      id: YojRJJvN4N8
+
+- conference: KCD Spain 2021
+  location: Online
+  date: June 2021
+  series: KCD
+  talks:
+    - title: Prepárate para multi cloud con Crossplane
+      id: MXRHkXoHjxU
+
+- conference: Tales in Tech LIVE
+  location: London, UK
+  date: October 2020
+  talks:
+    - title: Orchestrating Microservices in Kubernetes with Zeebe
+      id: ZM9dfvXAncQ
+
+- conference: Knative Meetup
+  location: Online
+  date: September 2020
+  talks:
+    - title: Cloud Events Orchestration with Knative and Zeebe
+      id: msDDdqmyEFA
+
+- conference: SouJava
+  location: Online
+  date: September 2020
+  series: SouJava
+  talks:
+    - title: "MOTU International Deep Dive: Open Source"
+      id: g0FgpxmgmPs
+
+- conference: KubeCon + CloudNativeCon Europe 2020
+  location: Virtual
+  date: August 2020
+  series: KubeCon
+  talks:
+    - title: How We Migrated Our Monolith to K8s and Became a High Performing Team
+      id: RbGy4oK_0qw
+      with: Tracy Miranda
+
+- conference: JNation 2020
+  location: Coimbra, Portugal
+  date: June 2020
+  series: JNation
+  talks:
+    - title: From Java Monoliths to K8s
+      id: bKiav8i-4FM
+
+- conference: KubeCon + CloudNativeCon North America 2019
+  location: San Diego, USA
+  date: November 2019
+  series: KubeCon
+  talks:
+    - title: "Lightning Talk: Boosting Your kubectl Productivity"
+      id: vVAFctQP1Vg
+    - title: "CD Foundation Summit: Jenkins X — Lessons Learned"
+      id: 1bGgEM_YXwM
+
+- conference: CloudBees Webinar
+  location: Online
+  date: November 2019
+  talks:
+    - title: From Monolith to Jenkins X
+      id: EIkiz8t3jXw
+
+- conference: SouJava
+  location: Online
+  date: November 2019
+  series: SouJava
+  talks:
+    - title: From Monolith to Kubernetes
+      id: bVQ_XdiGq94
+
+- conference: JHipster Conf 2019
+  location: Paris, France
+  date: June 2019
+  talks:
+    - title: Do We Need a JHipster Kubernetes Operator?
+      id: 9iqTtwptTT8
+
+- conference: London DevOps Meetup
+  location: London, UK
+  date: March 2019
+  talks:
+    - title: From Java Monolith to Kubernetes Microservices
+      id: GZuCBbZwmyc
+      with: Ryan Dawson
+
+- conference: GeeCON Prague 2018
+  location: Prague, Czech Republic
+  date: October 2018
+  series: GeeCON
+  talks:
+    - title: Spring Cloud, Docker & Kubernetes — Lessons Learned
+      id: jHcBGhQOZ6o
+
+- conference: SpringOne Platform 2018
+  location: Washington DC, USA
+  date: September 2018
+  talks:
+    - title: Spring Cloud on PKS
+      id: HmcQ8JSBg5E
+
+- conference: GeeCON 2018
+  location: Kraków, Poland
+  date: May 2018
+  series: GeeCON
+  talks:
+    - title: From Java EE to Spring Cloud — Lessons Learned
+      id: 85I1iTZCgUI
+
+- conference: Alfresco Tech Talk Live
+  location: Online
+  date: October 2018
+  series: Alfresco
+  talks:
+    - title: Spring Cloud on Kubernetes
+      id: NcgCmIXpjbs
+
+- conference: Alfresco Meetup
+  location: London, UK
+  date: March 2018
+  series: Alfresco
+  talks:
+    - title: Intro to Activiti
+      id: Y5bA3efD95U
+
+- conference: Alfresco DevCon 2018
+  location: Lisbon, Portugal
+  date: January 2018
+  series: Alfresco
+  talks:
+    - title: "Activiti Cloud = Secret Sauce"
+      id: NVZt7x0xJ3w
+    # A three-speaker session; `start` jumps to his segment.
+    - title: Collaborating with Alfresco
+      id: bsFB66PtrKc
+      start: 986
+
+- conference: "Alfresco Tech Talk Live #107"
+  location: Online
+  date: July 2017
+  series: Alfresco
+  talks:
+    - title: Introduction to Activiti
+      id: 7L9mfv5zEUk
+
+- conference: JBCNConf 2017
+  location: Barcelona, Spain
+  date: May 2017
+  series: JBCNConf
+  talks:
+    - title: Tomorrow's Model Driven Development
+      id: tRUKB6Ll-g4
+      with: Mario Romano
+
+- conference: Javaforum Göteborg
+  location: Gothenburg, Sweden
+  date: November 2016
+  talks:
+    - title: Modern Business Applications
+      id: bLJNCGHBz2M
+
+- conference: JBCNConf 2016
+  location: Barcelona, Spain
+  date: June 2016
+  series: JBCNConf
+  talks:
+    - title: "Closing Keynote: The Open Source Way — What, Why & How"
+      id: NvHvC2QfsYk
+      with: Maciej Swiderski
+      keynote: true
+
+- conference: GWT.create 2015
+  location: Munich, Germany
+  date: January 2015
+  talks:
+    - title: Rapidly Build Cloud IDEs with UberFire
+      id: dzuA5XytWus
+      with: Michael Anstis
+
+- conference: jBPM 6 Workshop
+  location: London, UK
+  date: October 2013
+  talks:
+    - title: jBPM 6 Free Workshop
+      id: OXarJLWTzww
+
+- conference: London JBUG
+  location: London, UK
+  date: December 2012
+  talks:
+    - title: "jBPM5: The Evolution of BPM Systems"
+      id: 9M1eaH3v4qg

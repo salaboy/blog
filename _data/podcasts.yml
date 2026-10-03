@@ -1,0 +1,130 @@
+# Podcasts, interviews and panel appearances, newest first.
+#
+# Separate from videos.yml because these are appearances rather than talks: no
+# conference, no location, and they sit in their own section on /videos/.
+#
+# `show` is the podcast or channel, `with` the host or fellow guests. `start`
+# (optional, seconds) jumps to his segment in a compilation.
+
+- show: KubeFM
+  date: September 2026
+  episodes:
+    - title: Building Platforms for AI Agents
+      id: 74kEDMBAXUY
+
+- show: DevEx Talks
+  date: September 2026
+  episodes:
+    - title: "Ep. 8 — Voces Cloud Native de Latinoamérica"
+      id: vDEG1dQ7-gY
+      with: Chris Tineo
+
+- show: KCD Lima 2026
+  date: August 2026
+  episodes:
+    # A compilation of speaker interviews; `start` jumps to his.
+    - title: Entrevista a los ponentes del KCD Lima
+      id: Vf0USPdbiSY
+      start: 878
+
+- show: Café con Mito (MitoCode)
+  date: August 2026
+  episodes:
+    - title: "T3 Ep. 10 — Entrevista a un Java Champion"
+      id: Rkea2-mzWlQ
+
+- show: KubeFM
+  date: June 2026
+  episodes:
+    - title: How to Govern AI-Generated Kubernetes Changes
+      id: LRwAAWTcldI
+
+- show: KubeFM
+  date: April 2026
+  episodes:
+    - title: Is Kubernetes Becoming the Platform for AI Workloads?
+      id: B7cyDD0DAGA
+
+- show: Dash0 Podcast
+  date: February 2026
+  episodes:
+    - title: "#38 — Beyond Kubernetes: Platform Engineering, Developer Experience and GenAI"
+      id: 5aoNWEdEPjs
+      with: Kasper Borg Nissen
+
+- show: Pure Performance
+  date: November 2025
+  episodes:
+    - title: Practical Platform Engineering vs the Marketing Hype
+      id: XnchpeJgGYo
+
+- show: Is it Observable
+  date: March 2025
+  episodes:
+    - title: "Observable Live Coding: KubeCon Kickoff"
+      id: 7Pv2ktWr2cw
+      with: Lin Sun, Abdel Sghiouar
+
+- show: Devtron
+  date: March 2025
+  episodes:
+    - title: "Architecting for the Cloud: Modern Development Strategies"
+      id: ZjmHLKuOaAo
+
+- show: The Kubernetes Podcast from Google
+  date: July 2024
+  episodes:
+    - title: Dapr, with Mauricio Salatino
+      id: 1JeAvw4MEd8
+
+- show: Changelog
+  date: March 2024
+  episodes:
+    - title: Let's Deploy Straight to Production!
+      id: YV0p-tLuhUE
+    - title: Continuous Delivery for Kubernetes
+      id: VtV2ePG3qqI
+
+- show: DevOps Paradox
+  date: December 2023
+  episodes:
+    - title: "DOP 240 — Supercharging Developer Workflows with Simplified Platform Engineering"
+      id: jMM1IUe0pOo
+
+- show: Civo
+  date: November 2023
+  episodes:
+    - title: How Can You Contribute to Open-Source Projects?
+      id: aF5oL2UtNnw
+
+- show: GOTO Book Club
+  date: June 2023
+  episodes:
+    # GOTO also posted a near-identical cut as ABhbk6ltyDc in December 2023.
+    - title: Platform Engineering on Kubernetes
+      id: Wp8huqq_qgI
+      with: Thomas Vitale
+
+- show: Women Who Make It Happen
+  date: October 2022
+  episodes:
+    - title: The Challenges of Building Cloud Native Platforms
+      id: DrRH37EpTbM
+
+- show: Continuous Delivery Foundation
+  date: June 2022
+  episodes:
+    - title: CDEvents, at cdCon 2022
+      id: Eura8KVTXSA
+
+- show: Changelog
+  date: March 2022
+  episodes:
+    - title: How to Do Kubernetes the RIGHT Way
+      id: X8JGwLQItxk
+
+- show: TFiR
+  date: July 2021
+  episodes:
+    - title: How Linode Is Helping Small & Medium Businesses With Cloud-Native Adoption
+      id: 84YJEel4yLU

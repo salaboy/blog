@@ -337,7 +337,13 @@ fi
 
 # Body references: markdown ![alt](path) and [text](path), plus <img src="...">.
 # Extract every candidate target, then filter to local files.
-mapfile -t REFS < <(
+#
+# Read loop rather than `mapfile`: macOS ships bash 3.2, which has no mapfile.
+# Process substitution, not a pipe, so the loop stays in the current shell.
+REFS=()
+while IFS= read -r ref; do
+  [[ -n "$ref" ]] && REFS+=("$ref")
+done < <(
   python3 - "$BODY_TMP" <<'PYEOF'
 import re, sys
 body = open(sys.argv[1], encoding="utf-8").read()
@@ -355,7 +361,7 @@ print("\n".join(out))
 PYEOF
 )
 
-for ref in "${REFS[@]}"; do
+for ref in "${REFS[@]+"${REFS[@]}"}"; do
   [[ -n "$ref" ]] || continue
   register_asset "$ref" || true
 done
