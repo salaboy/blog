@@ -13,35 +13,33 @@ original_url: https://www.salaboy.com/2008/02/12/about/
 
 Hi, I am [Mauricio Salatino](https://www.linkedin.com/in/salaboy/), also known as [@salaboy](https://x.com/salaboy), and I am passionate about Open Source, Kubernetes, and Cloud-Native software. I still consider myself a developer at heart. Hence, if you want to code and collaborate on something together, get in touch!
 
-I am an Open Source & Ecosystem Software Engineer at [@Dash0](https://www.dash0.com). I also serve as a co-chair of the CNCF [TAG Developer Experience](https://github.com/cncf/toc/tree/main/tags/tag-developer-experience). I previously worked for [VMware](https://vmware.com) and [Red Hat](https://www.redhat.com) as a Principal Software Engineer, building tools to help developers be more productive. I worked at [LearnKube](https://learnkube.com/) as a Kubernetes instructor, delivering training worldwide.
+I am currently working as a Platform and Developer Experience Software Engineer at [@Apple](https://www.apple.com). I've also served as a [CNCF TOC - Technical Oversight Committee Member](https://www.cncf.io/blog/2026/05/26/three-tag-leads-walk-into-the-toc/) and [TAG - Technical Advisory Group Member Developer Experience](https://github.com/cncf/toc/tree/main/tags/tag-developer-experience). I previously worked for [VMware](https://vmware.com) and [Red Hat](https://www.redhat.com) as a Principal Software Engineer, building tools to help developers be more productive. I worked at [LearnKube](https://learnkube.com/) as a Kubernetes instructor, delivering training worldwide.
 
 I also wrote a book titled [Platform Engineering on Kubernetes](http://mng.bz/jjKP) for Manning. I am currently writing a book titled [Developer Experience on Kubernetes](https://www.manning.com/books/developer-experience-on-kubernetes) with my friend [Thomas Vitale](https://www.linkedin.com/in/vitalethomas/).
 
 [![Book devex cover meap](https://cdn.jsdelivr.net/gh/salaboy/blog-assets@v1/images/2025/06/book-devex-cover-meap-1.png)](https://www.manning.com/books/developer-experience-on-kubernetes)[![Platform Engineering on Kubernetes micro2](https://cdn.jsdelivr.net/gh/salaboy/blog-assets@v1/images/2023/05/Platform_Engineering_on_Kubernetes_micro2-1.jpeg)](http://mng.bz/jjKP)
 
-If you are reading this page, you are interested in the same topics that I am. I hope this will also generate new collaborations and mentorship opportunities.
+If you are reading this page, you are interested in the same topics that I am. 
 
 I am based in London, UK ️🇬🇧, but I am originally from Argentina 🇦🇷.
 
-☕ Let's grab a coffee if you're around ☕. If not, drop me a message and let's collaborate on something.
-
-**Currently:**
-
-- Ecosystem Engineer / OSS [@ Dash0](/2026/04/07/joining-dash0/)
-- Co-Chair of CNCF [TAG Developer Experience](https://github.com/cncf/toc/tree/main/tags/tag-developer-experience)
-- [Manning Author: Platform Engineering on Kubernetes](http://mng.bz/jjKP)
-- Forever Kubernetes Instructor at [LearnKube (previously @learnk8s)](https://x.com/learnk8s)
-- KubeCon Keynote Speaker, KCD & other international conferences speaker
+☕ Let's grab a coffee if you're around ☕. 
 
 **Previously:**
+
+- Ecosystem Engineer / OSS [@Dash0](/2026/04/07/joining-dash0/)
+- CNCF [TOC elected Member](https://www.cncf.io/blog/2026/05/26/three-tag-leads-walk-into-the-toc/)
+- Co-Chair of CNCF [TAG Developer Experience](https://github.com/cncf/toc/tree/main/tags/tag-developer-experience)
+- [Manning Author: Platform Engineering on Kubernetes](http://mng.bz/jjKP)
+- Kubernetes Instructor at [LearnKube (previously @learnk8s)](https://x.com/learnk8s)
+- KubeCon Keynote Speaker, KCD & other international conferences speaker
 
 - [@Dapr](https://dapr.io) Project Maintainer - Creator and Maintainer of [Dapr Shared](https://github.com/dapr/dapr-shared)
 - [Knative Steering Committee Member 2022 - 2024](https://github.com/knative/community/blob/main/STEERING-COMMITTEE.md)
 - [Knative Functions Working Group Co-lead](https://github.com/knative/func)
 - [Continuous Delivery Foundation](http://cd.foundation) Ambassador + SIG Best Practices Chair
-
 - OSS Software & Ecosystem Engineer at [@Diagrid](https://www.diagrid.io/)
-- Staff Engineer [@VMware](http://twitter.com/vmware) for the [@KnativeProject](http://twitter.com/knativeproject) (2021 - 2022)
+- Staff Engineer [@VMware](http://twitter.com/vmware) for the [@KnativeProject](http://twitter.com/knativeproject) - Knative Steering Committee Emeritus (2021 - 2022)
 - Principal Software Engineer [@Camunda](http://camunda.com/) [@ZeebeHQ](http://zeebe.io/) (2019 - 2021)
 - Principal Software Engineer @ [Alfresco](http://alfresco.com/) / [Activiti Cloud](http://www.activiti.org) Tech Lead(2017 - 2019)
 - Senior Software Engineer @ [Red Hat](http://redhat.com/) / [JBoss](http://jboss.org/) (2012 - 2017)
